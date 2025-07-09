@@ -31,3 +31,15 @@ dicionario* incializar ( unsigned int tam_inicial){
 
 
 }
+unsigned int calcular_hash(const char* palavra, unsigned int tamanho_tabela) {
+    unsigned long hash = 5381; 
+    int c;
+
+    
+    while ((c = *palavra++)) {
+    
+        hash = ((hash << 5) + hash) + c; 
+    }
+
+    return hash % tamanho_tabela;
+}

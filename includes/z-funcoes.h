@@ -32,4 +32,7 @@ typedef struct dicionario {
 
 dicionario* inicializar(unsigned int tam_inicial);
 
+unsigned int calcular_hash(const char* palavra, unsigned int tamanho_tabela);
+
+
 #endif 
