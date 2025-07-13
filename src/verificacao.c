@@ -1,0 +1,1 @@
+#include "../includes/verificacao.h"

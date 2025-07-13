@@ -5,7 +5,7 @@
 #include "../includes/z-funcoes.h"
 
 
-dicionario* incializar ( unsigned int tam_inicial){
+dicionario* inicializar ( unsigned int tam_inicial){
 
     dicionario* novo = (dicionario*)malloc(sizeof(dicionario));
         if (novo == NULL){

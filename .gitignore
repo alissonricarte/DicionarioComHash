@@ -1,0 +1,18 @@
+# Arquivos executáveis
+*.exe
+*.out
+
+# Arquivos objeto (gerados na compilação)
+*.o
+
+# Pastas de saída de compilação
+/src/output/
+
+# Outros arquivos comuns de build em C/C++
+*.obj
+*.dll
+*.lib
+*.so
+
+# Arquivos de configuração do VS Code (opcional, se não quiser versionar)
+.vscode/
