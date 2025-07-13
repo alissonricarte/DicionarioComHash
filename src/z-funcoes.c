@@ -158,3 +158,30 @@ palavra* atual = dicionario_n->baldes[indice];
         return NULL;
 
 }
+void exibir_dic(dicionario* dic){
+    if(dic == NULL){
+        printf("Dicionário invalido, fechando...\n");
+        return;
+    }
+    if(dic->numero_elementos == 0){
+        printf("O dicionário está vazio... \n Insira novas palavras");
+        return;
+    
+    }
+        for( unsigned i = 0; i < dic->tamanho_atual; i++){
+            palavra* atual_palavra = dic->baldes[i];
+
+            while(atual_palavra != NULL){
+                printf("-> %s \n ", atual_palavra->palavra);
+                significado* atual_significado = atual_palavra->significados;
+
+                while(atual_significado != NULL){
+                    printf("-%s \n",atual_significado->texto );
+                    atual_significado = atual_significado->proximo;
+                }
+
+                atual_palavra = atual_palavra->proxima;
+            }
+        }
+
+}
