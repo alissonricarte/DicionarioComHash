@@ -36,6 +36,7 @@ unsigned int calcular_hash(const char* palavra, unsigned int tamanho_tabela);
 
 void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const char* significado_str);
 
-
+palavra* buscar(dicionario* dicionario_n, const char* palavra_str);
+    
 
 #endif 
