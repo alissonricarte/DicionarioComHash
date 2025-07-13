@@ -44,7 +44,6 @@ unsigned int calcular_hash(const char* palavra, unsigned int tamanho_tabela) {
     return hash % tamanho_tabela;
 }
 
-
 void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const char* significado_str) {
     if (dicionario_n == NULL || palavra_str == NULL || significado_str == NULL) {
         printf("Erro: Dicionário, palavra ou significado inválido.\n");
@@ -54,24 +53,27 @@ void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const ch
 
     unsigned int indice = calcular_hash(palavra_str, dicionario_n->tamanho_atual);
     palavra* atual = dicionario_n->baldes[indice];
-    
-    
-    while (atual != NULL) {
-        if (strcmp(atual->palavra, palavra_str) == 0) {
 
+    while (atual != NULL) {
+        if (strcmp(atual->palavra, palavra_str) == 0) { // Palavra encontrada
             significado* novo_significado = (significado*)malloc(sizeof(significado));
             if (novo_significado == NULL) {
                 printf("Erro: Falha na alocação de memória para o significado.\n");
                 fflush(stdout);
                 return;
             }
-            novo_significado->texto = (char*)(significado_str); 
-            if (novo_significado->texto == NULL) {
+            
+            // SUBSTITUÍDO: strdup por strlen + malloc + strcpy
+            size_t len_significado = strlen(significado_str);
+            novo_significado->texto = (char*)malloc(len_significado + 1); // +1 para o '\0'
+            if (novo_significado->texto == NULL) { // Verifica falha na alocação
                 printf("Erro: Falha na duplicação da string do significado.\n");
                 fflush(stdout);
-                free(novo_significado);
+                free(novo_significado); // Libera o nó do significado se o texto falhar
                 return;
             }
+            strcpy(novo_significado->texto, significado_str); // Copia a string
+            
             novo_significado->proximo = atual->significados;
             atual->significados = novo_significado;
 
@@ -79,22 +81,28 @@ void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const ch
             fflush(stdout);
             return;
         }
-        atual = atual->proxima; 
+        atual = atual->proxima;
     }
 
+    // Palavra não encontrada, criar nova entrada
     palavra* nova_palavra = (palavra*)malloc(sizeof(palavra));
     if (nova_palavra == NULL) {
         printf("Erro: Falha na alocação de memória para a nova palavra.\n");
         fflush(stdout);
         return;
     }
-    nova_palavra->palavra = (char*)(palavra_str);
-    if (nova_palavra->palavra == NULL) {
+    
+    // SUBSTITUÍDO: strdup por strlen + malloc + strcpy
+    size_t len_palavra = strlen(palavra_str);
+    nova_palavra->palavra = (char*)malloc(len_palavra + 1); // +1 para o '\0'
+    if (nova_palavra->palavra == NULL) { // Verifica falha na alocação
         printf("Erro: Falha na duplicação da string da palavra.\n");
         fflush(stdout);
-        free(nova_palavra);
+        free(nova_palavra); // Libera o nó da palavra se o texto falhar
         return;
     }
+    strcpy(nova_palavra->palavra, palavra_str); // Copia a string
+    
     nova_palavra->proxima = NULL;
 
     significado* novo_significado = (significado*)malloc(sizeof(significado));
@@ -105,8 +113,11 @@ void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const ch
         free(nova_palavra);
         return;
     }
-    novo_significado->texto = (char*)(significado_str); 
-    if (novo_significado->texto == NULL) {
+    
+    // SUBSTITUÍDO: strdup por strlen + malloc + strcpy
+    size_t len_novo_significado_str = strlen(significado_str);
+    novo_significado->texto = (char*)malloc(len_novo_significado_str + 1); // +1 para o '\0'
+    if (novo_significado->texto == NULL) { // Verifica falha na alocação
         printf("Erro: Falha na duplicação da string do significado da nova palavra.\n");
         fflush(stdout);
         free(novo_significado);
@@ -114,10 +125,12 @@ void inserir_palavra(dicionario* dicionario_n, const char* palavra_str, const ch
         free(nova_palavra);
         return;
     }
+    strcpy(novo_significado->texto, significado_str); // Copia a string
+    
     novo_significado->proximo = NULL;
     nova_palavra->significados = novo_significado;
 
-    nova_palavra->proxima = dicionario_n->baldes[indice]; 
+    nova_palavra->proxima = dicionario_n->baldes[indice];
     dicionario_n->baldes[indice] = nova_palavra;
 
     dicionario_n->numero_elementos++;
