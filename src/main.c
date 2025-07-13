@@ -6,10 +6,14 @@
 
 
 int main(){
-     dicionario* meu_dicionario = inicializar(2); 
+     dicionario* meu_dicionario = inicializar(4); 
 
     if (meu_dicionario != NULL) {
         printf("Dicionario inicializado com sucesso!\n");
+        
+
+        inserir_palavra( meu_dicionario,"casa","lar");
+         inserir_palavra( meu_dicionario,"casa","abrigo");
     
     } else {
         printf("Falha ao inicializar o dicionario. Encerrando programa.\n");
