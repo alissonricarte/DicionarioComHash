@@ -7,10 +7,13 @@
 
 int main(){
      dicionario* meu_dicionario = inicializar(4); 
+     inserir_palavra(meu_dicionario,"casa","abrigo");
 
    
 
     exibir_dic(meu_dicionario);
+
+    remover_palavra(meu_dicionario,"casa");
 
 
     return 0;
