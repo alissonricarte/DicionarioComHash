@@ -8,5 +8,7 @@
 
  void covert_maisculas_minusculas(char* str);
 
+ bool caracteres_permitidos(const char* str);
+
 
 #endif 
