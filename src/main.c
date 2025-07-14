@@ -15,6 +15,11 @@ int main(){
 
     remover_palavra(meu_dicionario,"casa");
 
+    char palavra[] = "Ola TuDO beM?";
+     printf("palavra inserida %s \n", palavra);
+    covert_maisculas_minusculas(palavra);
+    printf("palavra corriigida: \n %s \n", palavra);
+
 
     return 0;
 }
