@@ -24,7 +24,7 @@ int main(){
         printf("valida \n");
     }
     else{
-        printf("invalida");
+        printf("invalida...");
     }
 
 
