@@ -231,3 +231,37 @@ void remover_palavra(dicionario* dic, const char* palavra_str) {
     printf("Palavra '%s' nao encontrada no dicionário.\n", palavra_str);
     return;
 }
+
+void liberar_dicionario(dicionario* dic) {
+    if (dic == NULL) {
+        printf("Dicionário inválido ou já liberado.\n");
+        return;
+    }
+
+    for (unsigned int i = 0; i < dic->tamanho_atual; i++) {
+        palavra* atual_palavra = dic->baldes[i];
+        palavra* temp_palavra = NULL;
+
+        while (atual_palavra != NULL) {
+            temp_palavra = atual_palavra;
+            atual_palavra = atual_palavra->proxima;
+
+            significado* atual_significado = temp_palavra->significados;
+            significado* temp_significado = NULL;
+            while (atual_significado != NULL) {
+                temp_significado = atual_significado;
+                atual_significado = atual_significado->proximo;
+                free(temp_significado->texto);
+                free(temp_significado);
+            }
+
+            free(temp_palavra->palavra);
+            free(temp_palavra);
+        }
+    }
+
+    free(dic->baldes);
+    free(dic);
+
+    printf("Dicionário liberado com sucesso!\n");
+}

@@ -41,6 +41,8 @@ palavra* buscar(dicionario* dicionario_n, const char* palavra_str);
 void exibir_dic(dicionario* dic); 
 
 void remover_palavra(dicionario* dic, const char* palavra_str);
+
+void liberar_dicionario(dicionario* dic);
     
 
 #endif 
