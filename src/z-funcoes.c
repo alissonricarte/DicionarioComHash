@@ -185,3 +185,49 @@ void exibir_dic(dicionario* dic){
         }
 
 }
+
+void remover_palavra(dicionario* dic, const char* palavra_str) {
+    if (dic == NULL || palavra_str == NULL) {
+        printf("Erro, dicionario ou palavra inválidos...\n");
+        return;
+    }
+
+    unsigned int indice = calcular_hash(palavra_str, dic->tamanho_atual);
+
+    palavra* atual = dic->baldes[indice];
+    palavra* anterior = NULL;
+
+    while (atual != NULL) {
+        if (strcmp(atual->palavra, palavra_str) == 0) {
+            if (anterior == NULL) {
+                dic->baldes[indice] = atual->proxima;
+            } else {
+                anterior->proxima = atual->proxima;
+            }
+
+            significado* sig_atual = atual->significados;
+            significado* sig_temp = NULL;
+
+            while (sig_atual != NULL) {
+                sig_temp = sig_atual;
+                sig_atual = sig_atual->proximo; 
+                free(sig_temp->texto);
+                free(sig_temp);
+            }
+
+            free(atual->palavra);
+            free(atual);
+
+            dic->numero_elementos--;
+
+            printf("Palavra '%s' removida do dicionário.\n", palavra_str);
+            return;
+        }
+
+        anterior = atual;
+        atual = atual->proxima;
+    }
+
+    printf("Palavra '%s' nao encontrada no dicionário.\n", palavra_str);
+    return;
+}
