@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../includes/verificacao.h"
-#include "../includes/z-funcoes.h"
+#include "../includes/dicionario.h"
 
 
 dicionario* inicializar ( unsigned int tam_inicial){
