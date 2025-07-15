@@ -30,4 +30,6 @@ void remover_palavra(dicionario *dic, const char *palavra_str);
 
 void liberar_dicionario(dicionario *dic);
 
+void remover_significado(dicionario* dic, const char* palavra_str, const char* significado_str);
+
 #endif

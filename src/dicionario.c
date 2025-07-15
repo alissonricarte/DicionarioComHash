@@ -314,3 +314,45 @@ void liberar_dicionario(dicionario *dic)
 
     printf("Dicionário liberado com sucesso!\n");
 }
+
+void remover_significado(dicionario* dic, const char* palavra_str, const char* significado_str) {
+    if (dic == NULL || palavra_str == NULL || significado_str == NULL) {
+        printf("Erro: Dicionário, palavra ou significado inválido para remover.\n");
+        fflush(stdout);
+        return;
+    }
+
+    palavra* alvo_palavra = buscar(dic, palavra_str); 
+
+    if (alvo_palavra == NULL) {
+        printf("Palavra '%s' nao encontrada no dicionario.\n", palavra_str);
+        fflush(stdout);
+        return;
+    }
+
+    significado* atual_sig = alvo_palavra->significados;
+    significado* anterior_sig = NULL;
+
+    while (atual_sig != NULL) {
+        if (strcmp(atual_sig->texto, significado_str) == 0) {
+            if (anterior_sig == NULL) {
+                alvo_palavra->significados = atual_sig->proximo;
+            } else {
+                anterior_sig->proximo = atual_sig->proximo;
+            }
+
+            free(atual_sig->texto);
+            free(atual_sig);
+
+            printf("Significado '%s' removido da palavra '%s'.\n", significado_str, palavra_str);
+            fflush(stdout);
+            return;
+        }
+
+        anterior_sig = atual_sig;
+        atual_sig = atual_sig->proximo;
+    }
+
+    printf("Significado '%s' nao encontrado para a palavra '%s'.\n", significado_str, palavra_str);
+    fflush(stdout);
+}
