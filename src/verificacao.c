@@ -8,7 +8,7 @@ bool caracteres_permitidos(const char *str)
     {
         unsigned char c = (unsigned char)str[i];
 
-        if (!isalpha(c) && c != '-' && c != '\'' && !isspace(c))
+        if (!isalpha(c) && c != '-' && c != '\'' && !isspace(c) && c != ',')
         {
             return false;
         }
