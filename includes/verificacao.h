@@ -6,7 +6,6 @@
 #include <ctype.h>
 #include <string.h>
 
-void covert_maisculas_minusculas(char *str);
 
 bool caracteres_permitidos(const char *str);
 
