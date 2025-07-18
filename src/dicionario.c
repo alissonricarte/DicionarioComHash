@@ -4,39 +4,19 @@
 #include "../includes/verificacao.h"
 #include "../includes/dicionario.h"
 
-typedef struct significado
-{
-    char *texto;
-    struct significado *proximo;
-} significado;
-
-typedef struct palavra
-{
-    char *palavra;
-    significado *significados;
-    struct palavra *proxima;
-} palavra;
-
-typedef struct dicionario
-{
-    palavra **baldes;
-    unsigned int tamanho_atual;
-    unsigned int numero_elementos;
-} dicionario;
-
 dicionario *inicializar(unsigned int tam_inicial)
 {
 
     dicionario *novo = (dicionario *)malloc(sizeof(dicionario));
     if (novo == NULL)
     {
-        printf("Falha na alocação de memória para o dicionário");
+        printf("Falha na alocação de memoria para o dicionario");
         return NULL;
     }
     novo->baldes = (palavra **)malloc(sizeof(palavra *) * tam_inicial);
     if (novo->baldes == NULL)
     {
-        printf("Falha ao alocar memória para os baldes do dicionário");
+        printf("Falha ao alocar memoria para os baldes do dicionario");
         free(novo);
         return NULL;
     }
@@ -48,10 +28,12 @@ dicionario *inicializar(unsigned int tam_inicial)
     novo->tamanho_atual = tam_inicial;
     novo->numero_elementos = 0;
 
-    printf("Dicionário inicializado com %u espaços. \n ", tam_inicial);
+    printf("Inicializando...\n Bem vindo ao dicionario virtual.\n Informe uma opcao de 0-5 para comecar a utilizar: \n");
 
     return novo;
 }
+
+
 unsigned int calcular_hash(const char *palavra, unsigned int tamanho_tabela)
 {
     unsigned long hash = 5381;
@@ -194,7 +176,7 @@ void exibir_dic(dicionario *dic)
 {
     if (dic == NULL)
     {
-        printf("Dicionário invalido, fechando...\n");
+        printf("Dicionario invalido, fechando...\n");
         return;
     }
     if (dic->numero_elementos == 0)
