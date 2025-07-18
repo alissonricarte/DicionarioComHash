@@ -54,7 +54,6 @@ int main() {
                     printf("Erro: A palavra contem caracteres invalidos! (Permitido: letras, '-', '', espacos).\n");
                     break;
                 }
-                covert_maisculas_minusculas(palavra_input);
 
                 char adicionar_mais_significados;
                 do {
@@ -87,7 +86,6 @@ int main() {
                     printf("Erro: Palavra de busca contem caracteres invalidos!\n");
                     break;
                 }
-                covert_maisculas_minusculas(palavra_input);
 
                 palavra_encontrada = buscar(meu_dicionario, palavra_input);
                 if (palavra_encontrada != NULL) {
@@ -112,7 +110,6 @@ int main() {
                     printf("Erro: Palavra a remover contem caracteres invalidos!\n");
                     break;
                 }
-                covert_maisculas_minusculas(palavra_input);
 
                 remover_palavra(meu_dicionario, palavra_input);
                 break;
@@ -127,7 +124,6 @@ int main() {
                     printf("Erro: Palavra contem caracteres invalidos!\n");
                     break;
                 }
-                covert_maisculas_minusculas(palavra_input);
 
                 printf("Digite o significado a remover para '%s': ", palavra_input);
                 fgets(significado_input, MAX_BUFFER, stdin);
