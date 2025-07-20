@@ -9,13 +9,14 @@
 #define MAX_BUFFER 256
 
 int main() {
+
+
     dicionario* meu_dicionario = inicializar(100);
 
     if (meu_dicionario == NULL) {
         printf("Falha ao inicializar o dicionario. Encerrando programa.\n");
         return 1;
     }
-    printf("Dicionario inicializado com sucesso!\n");
     fflush(stdout);
 
     int opcao;
@@ -24,12 +25,13 @@ int main() {
     palavra* palavra_encontrada;
 
     do {
-        printf("\n--- DICIONARIO INTERATIVO ---\n");
+        printf("\n\n---------DICIONARIO VIRTUAL---------\n\n");
         printf("1. Inserir Palavra e Significado(s)\n");
         printf("2. Buscar Palavra\n");
         printf("3. Remover Palavra\n");
         printf("4. Remover Significado Especifico\n");
-        printf("5. Listar Todas as Palavras\n");
+        printf("5. Adicionar Significado a Palavra Existente\n");
+        printf("6. Listar Todas as Palavras\n");
         printf("0. Sair\n");
         printf("-----------------------------\n");
         printf("Escolha uma opcao: ");
@@ -49,6 +51,7 @@ int main() {
                 printf("Digite a palavra: ");
                 fgets(palavra_input, MAX_BUFFER, stdin);
                 palavra_input[strcspn(palavra_input, "\n")] = 0;
+                aparar_espacos(palavra_input);
 
                 if (!caracteres_permitidos(palavra_input)) {
                     printf("Erro: A palavra contem caracteres invalidos! (Permitido: letras, '-', '', espacos).\n");
@@ -60,6 +63,7 @@ int main() {
                     printf("Digite o significado: ");
                     fgets(significado_input, MAX_BUFFER, stdin);
                     significado_input[strcspn(significado_input, "\n")] = 0;
+                    aparar_espacos(significado_input);
 
                     if (!caracteres_permitidos(significado_input)) {
                         printf("Erro: O significado contem caracteres invalidos! Nao sera adicionado.\n");
@@ -81,6 +85,7 @@ int main() {
                 printf("Digite a palavra a buscar: ");
                 fgets(palavra_input, MAX_BUFFER, stdin);
                 palavra_input[strcspn(palavra_input, "\n")] = 0;
+                aparar_espacos(palavra_input);
 
                 if (!caracteres_permitidos(palavra_input)) {
                     printf("Erro: Palavra de busca contem caracteres invalidos!\n");
@@ -105,6 +110,7 @@ int main() {
                 printf("Digite a palavra a remover: ");
                 fgets(palavra_input, MAX_BUFFER, stdin);
                 palavra_input[strcspn(palavra_input, "\n")] = 0;
+                aparar_espacos(palavra_input);
 
                 if (!caracteres_permitidos(palavra_input)) {
                     printf("Erro: Palavra a remover contem caracteres invalidos!\n");
@@ -119,6 +125,7 @@ int main() {
                 printf("Digite a palavra do significado a remover: ");
                 fgets(palavra_input, MAX_BUFFER, stdin);
                 palavra_input[strcspn(palavra_input, "\n")] = 0;
+                aparar_espacos(palavra_input);
 
                 if (!caracteres_permitidos(palavra_input)) {
                     printf("Erro: Palavra contem caracteres invalidos!\n");
@@ -128,6 +135,7 @@ int main() {
                 printf("Digite o significado a remover para '%s': ", palavra_input);
                 fgets(significado_input, MAX_BUFFER, stdin);
                 significado_input[strcspn(significado_input, "\n")] = 0;
+                aparar_espacos(significado_input);
 
                 if (!caracteres_permitidos(significado_input)) {
                     printf("Erro: Significado contem caracteres invalidos!\n");
@@ -136,8 +144,49 @@ int main() {
 
                 remover_significado(meu_dicionario, palavra_input, significado_input);
                 break;
-
+            
             case 5:
+                printf("\n--- ADICIONAR SIGNIFICADO A PALAVRA EXISTENTE ---\n");
+                printf("Digite a palavra: ");
+                fgets(palavra_input, MAX_BUFFER, stdin);
+                palavra_input[strcspn(palavra_input, "\n")] = 0;
+                aparar_espacos(palavra_input);
+
+                if (!caracteres_permitidos(palavra_input)) {
+                    printf("Erro: A palavra contem caracteres invalidos!\n");
+                    break;
+                }
+
+                palavra_encontrada = buscar(meu_dicionario, palavra_input);
+                if (palavra_encontrada == NULL) {
+                    printf("Erro: Palavra '%s' nao encontrada no dicionario.\n", palavra_input);
+                    break;
+                }
+                
+                char add_mais_significados;
+                do {
+                    printf("Digite o novo significado para '%s': ", palavra_input);
+                    fgets(significado_input, MAX_BUFFER, stdin);
+                    significado_input[strcspn(significado_input, "\n")] = 0;
+                    aparar_espacos(significado_input);
+
+                    if (!caracteres_permitidos(significado_input)) {
+                        printf("Erro: O significado contem caracteres invalidos! Nao sera adicionado.\n");
+                    } else {
+                        inserir_palavra(meu_dicionario, palavra_input, significado_input);
+                    }
+
+                    printf("Deseja adicionar outro significado para '%s'? (s/n): ", palavra_input);
+                    fflush(stdout);
+                    if (scanf(" %c", &add_mais_significados) != 1) {
+                        add_mais_significados = 'n';
+                    }
+                    while (getchar() != '\n');
+                } while (tolower(add_mais_significados) == 's');
+                break;
+
+
+            case 6:
                 printf("\n--- LISTA DE PALAVRAS ---\n");
                 exibir_dic(meu_dicionario);
                 break;
@@ -149,7 +198,7 @@ int main() {
                 break;
 
             default:
-                printf("Opcao invalida. Por favor, digite um numero entre 0 e 5.\n");
+                printf("Opcao invalida. Por favor, digite um numero entre 0 e 6.\n");
                 break;
         }
         fflush(stdout);
