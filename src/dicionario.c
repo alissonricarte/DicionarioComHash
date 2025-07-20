@@ -10,7 +10,7 @@ dicionario *inicializar(unsigned int tam_inicial)
     dicionario *novo = (dicionario *)malloc(sizeof(dicionario));
     if (novo == NULL)
     {
-        printf("Falha na alocação de memoria para o dicionario");
+        printf("Falha na alocacao de memoria para o dicionario");
         return NULL;
     }
     novo->baldes = (palavra **)malloc(sizeof(palavra *) * tam_inicial);
@@ -28,7 +28,7 @@ dicionario *inicializar(unsigned int tam_inicial)
     novo->tamanho_atual = tam_inicial;
     novo->numero_elementos = 0;
 
-    printf("Inicializando...\n Bem vindo ao dicionario virtual.\n Informe uma opcao de 0-5 para comecar a utilizar: \n");
+    printf(" === Bem vindo ao dicionario virtual ===\n");
 
     return novo;
 }
@@ -52,7 +52,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
 {
     if (dicionario_n == NULL || palavra_str == NULL || significado_str == NULL)
     {
-        printf("Erro: Dicionário, palavra ou significado inválido.\n");
+        printf("Erro: Dicionario, palavra ou significado invalido.\n");
         fflush(stdout);
         return;
     }
@@ -67,7 +67,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
             significado *novo_significado = (significado *)malloc(sizeof(significado));
             if (novo_significado == NULL)
             {
-                printf("Erro: Falha na alocação de memória para o significado.\n");
+                printf("Erro: Falha na alocacao de memoria para o significado.\n");
                 fflush(stdout);
                 return;
             }
@@ -76,7 +76,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
             novo_significado->texto = (char *)malloc(len_significado + 1);
             if (novo_significado->texto == NULL)
             {
-                printf("Erro: Falha na duplicação da string do significado.\n");
+                printf("Erro: Falha na duplicacao da string do significado.\n");
                 fflush(stdout);
                 free(novo_significado);
                 return;
@@ -86,7 +86,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
             novo_significado->proximo = atual->significados;
             atual->significados = novo_significado;
 
-            printf("Significado '%s' adicionado à palavra '%s'.\n", significado_str, palavra_str);
+            printf("Significado '%s' adicionado a palavra '%s'.\n", significado_str, palavra_str);
             fflush(stdout);
             return;
         }
@@ -96,7 +96,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
     palavra *nova_palavra = (palavra *)malloc(sizeof(palavra));
     if (nova_palavra == NULL)
     {
-        printf("Erro: Falha na alocação de memória para a nova palavra.\n");
+        printf("Erro: Falha na alocacao de memoria para a nova palavra.\n");
         fflush(stdout);
         return;
     }
@@ -105,7 +105,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
     nova_palavra->palavra = (char *)malloc(len_palavra + 1);
     if (nova_palavra->palavra == NULL)
     {
-        printf("Erro: Falha na duplicação da string da palavra.\n");
+        printf("Erro: Falha na duplicacao da string da palavra.\n");
         fflush(stdout);
         free(nova_palavra);
         return;
@@ -117,7 +117,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
     significado *novo_significado = (significado *)malloc(sizeof(significado));
     if (novo_significado == NULL)
     {
-        printf("Erro: Falha na alocação de memória para o significado da nova palavra.\n");
+        printf("Erro: Falha na alocacao de memoria para o significado da nova palavra.\n");
         fflush(stdout);
         free(nova_palavra->palavra);
         free(nova_palavra);
@@ -128,7 +128,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
     novo_significado->texto = (char *)malloc(len_novo_significado_str + 1);
     if (novo_significado->texto == NULL)
     {
-        printf("Erro: Falha na duplicação da string do significado da nova palavra.\n");
+        printf("Erro: Falha na duplicacao da string do significado da nova palavra.\n");
         fflush(stdout);
         free(novo_significado);
         free(nova_palavra->palavra);
@@ -145,7 +145,7 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
 
     dicionario_n->numero_elementos++;
 
-    printf("Palavra '%s' e significado '%s' inseridos no dicionário.\n", palavra_str, significado_str);
+    printf("Palavra '%s' e significado '%s' inseridos no dicionario.\n", palavra_str, significado_str);
     fflush(stdout);
 }
 
@@ -153,7 +153,7 @@ palavra *buscar(dicionario *dicionario_n, const char *palavra_str)
 {
     if (dicionario_n == NULL || palavra_str == NULL)
     {
-        printf("Falha, dicionário ou palavra de busca inválidos");
+        printf("Falha, dicionario ou palavra de busca invalidos");
         return NULL;
     }
     unsigned int indice = calcular_hash(palavra_str, dicionario_n->tamanho_atual);
@@ -181,7 +181,7 @@ void exibir_dic(dicionario *dic)
     }
     if (dic->numero_elementos == 0)
     {
-        printf("O dicionário está vazio... \n Insira novas palavras");
+        printf("O dicionario esta vazio... \n Insira novas palavras");
         return;
     }
     for (unsigned i = 0; i < dic->tamanho_atual; i++)
@@ -208,7 +208,7 @@ void remover_palavra(dicionario *dic, const char *palavra_str)
 {
     if (dic == NULL || palavra_str == NULL)
     {
-        printf("Erro, dicionario ou palavra inválidos...\n");
+        printf("Erro, dicionario ou palavra invalidos...\n");
         return;
     }
 
@@ -246,7 +246,7 @@ void remover_palavra(dicionario *dic, const char *palavra_str)
 
             dic->numero_elementos--;
 
-            printf("Palavra '%s' removida do dicionário.\n", palavra_str);
+            printf("Palavra '%s' removida do dicionario.\n", palavra_str);
             return;
         }
 
@@ -254,7 +254,7 @@ void remover_palavra(dicionario *dic, const char *palavra_str)
         atual = atual->proxima;
     }
 
-    printf("Palavra '%s' nao encontrada no dicionário.\n", palavra_str);
+    printf("Palavra '%s' nao encontrada no dicionario.\n", palavra_str);
     return;
 }
 
@@ -262,7 +262,7 @@ void liberar_dicionario(dicionario *dic)
 {
     if (dic == NULL)
     {
-        printf("Dicionário inválido ou já liberado.\n");
+        printf("Dicionario invalido ou ja liberado.\n");
         return;
     }
 
@@ -294,12 +294,12 @@ void liberar_dicionario(dicionario *dic)
     free(dic->baldes);
     free(dic);
 
-    printf("Dicionário liberado com sucesso!\n");
+    printf("Dicionario liberado com sucesso!\n");
 }
 
 void remover_significado(dicionario* dic, const char* palavra_str, const char* significado_str) {
     if (dic == NULL || palavra_str == NULL || significado_str == NULL) {
-        printf("Erro: Dicionário, palavra ou significado inválido para remover.\n");
+        printf("Erro: Dicionario, palavra ou significado invalido para remover.\n");
         fflush(stdout);
         return;
     }
@@ -337,4 +337,23 @@ void remover_significado(dicionario* dic, const char* palavra_str, const char* s
 
     printf("Significado '%s' nao encontrado para a palavra '%s'.\n", significado_str, palavra_str);
     fflush(stdout);
+}
+
+void aparar_espacos(char *str) {
+    if (str == NULL) return;
+
+    char *inicio = str;
+    while (isspace((unsigned char)*inicio)) {
+        inicio++;
+    }
+
+    if (inicio != str) {
+        memmove(str, inicio, strlen(inicio) + 1);
+    }
+
+    char *fim = str + strlen(str) - 1;
+    while (fim >= str && isspace((unsigned char)*fim)) {
+        *fim = '\0';
+        fim--;
+    }
 }

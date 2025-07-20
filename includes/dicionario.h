@@ -49,4 +49,6 @@ void liberar_dicionario(dicionario *dic);
 
 void remover_significado(dicionario* dic, const char* palavra_str, const char* significado_str);
 
+void aparar_espacos(char *str);
+
 #endif
