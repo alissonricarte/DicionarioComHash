@@ -99,7 +99,7 @@ gcc src/main.c src/dicionario.c src/verificacao.c -Iincludes -o main.exe
       <tr>
         <td align="center">
           <a href="#">
-            <img src="https://avatars.githubusercontent.com/u/144806270?v=4" width="100px;" alt="chico moedas"/><br>
+            <img src="https://avatars.githubusercontent.com/u/144806270?v=4" width="100px;" alt="alisson"/><br>
             <sub>
               <a href="https://github.com/alissonricarte"><b>Alisson Ricarte</b></a>
             </sub>
@@ -107,7 +107,7 @@ gcc src/main.c src/dicionario.c src/verificacao.c -Iincludes -o main.exe
         </td>
         <td align="center">
           <a href="#">
-            <img src="https://avatars.githubusercontent.com/u/147107207?v=4" width="100px;" alt="fotin"/><br>
+            <img src="https://avatars.githubusercontent.com/u/147107207?v=4" width="100px;" alt="daniel"/><br>
             <sub>
               <a href="https://github.com/daniel1234costa"><b>Daniel Costa</b></a>
             </sub>
@@ -115,7 +115,7 @@ gcc src/main.c src/dicionario.c src/verificacao.c -Iincludes -o main.exe
         </td>
         <td align="center">
           <a href="#">
-            <img src="https://avatars.githubusercontent.com/u/156232385?v=4" width="100px;" alt="chico moedas"/><br>
+            <img src="https://avatars.githubusercontent.com/u/156232385?v=4" width="100px;" alt="mateus"/><br>
             <sub>
               <a href="https://github.com/mateussspinheiro"><b>Mateus Pinheiro</b></a>
             </sub>
@@ -123,14 +123,14 @@ gcc src/main.c src/dicionario.c src/verificacao.c -Iincludes -o main.exe
         </td>
         <td align="center">
           <a href="#">
-            <img src="https://avatars.githubusercontent.com/u/185148834?v=4" width="100px;" alt="chico moedas"/><br>
+            <img src="https://avatars.githubusercontent.com/u/185148834?v=4" width="100px;" alt="marcelo"/><br>
             <sub>
               <a href="https://github.com/MarceloHmarques"><b>Marcelo Marques</b></a>
             </sub>
           </a>
         </td>
     </table>
-   <span style="font-weight: bold;">Um agradecimento especial a todas as pessoas que ajudaram neste projeto.</span>
+   <span style="font-weight: bold;">Equipe DicionárioHash - Obrigado por utilizar nosso sistema!</span>
   </div>
 </div>
 
