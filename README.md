@@ -32,7 +32,8 @@ Este projeto implementa um dicionário eficiente utilizando **tabela hash** com 
 2 - Buscar Palavra
 3 - Remover Palavra
 4 - Remover Significado Especifico
-5 - Listar Todas as Palavras
+5 - Adicionar Significado a Palavra Existente
+6 - Listar Todas as Palavras
 0 - Sair
 ```
 
