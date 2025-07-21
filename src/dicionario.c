@@ -165,7 +165,6 @@ palavra *buscar(dicionario *dicionario_n, const char *palavra_str)
         if (strcmp(atual->palavra, palavra_str) == 0)
         {
             return atual;
-            printf("ola");
         }
         atual = atual->proxima;
     }
