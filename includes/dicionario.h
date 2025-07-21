@@ -81,9 +81,4 @@ void remover_significado(dicionario* dic, const char* palavra_str, const char* s
 // Ao encontrar o significado específico, ajusta as ligações da lista para removê-lo e libera a memória associada a ele.
 // Caso a palavra ou o significado não sejam encontrados, uma mensagem é exibida.
 
-void aparar_espacos(char *str);
-//A função aparar_espacos remove espaços em branco do início e do fim de uma string.
-//Ela avança um ponteiro pelo começo dos espaços e retrocede outro pelo fim,
-// substituindo os espaços por um terminador nulo.
-
 #endif
