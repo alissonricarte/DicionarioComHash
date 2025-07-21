@@ -34,10 +34,21 @@ typedef struct dicionario
 
 
 dicionario *inicializar(unsigned int tam_inicial);
+ // função para iniciar o dicionário, aloca memória para dicionario e para o array
+// de baldes, inicializa todos os ponteiros de baldes para NULL, além de definir o número 
+// de elementos da hash e zerar o contador.
 
 unsigned int calcular_hash(const char *palavra, unsigned int tamanho_tabela);
+//Aqui definimos um valor estratégico para usar no cálculo da hash,
+// iniciamos um loop para percorrer toda a palavra, usando deslocamento de bits no valor hash,
+// somando a seu próprio valor e ao valor de cada caractere da palavra,
+// quando termina o loop dividimos o resultado pelo tamanho da tabela e achamos o índice.
+
 
 void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const char *significado_str);
+//A função inserir_palavra valida a entrada e utiliza a função de calcular hash para achar o balde correto.
+// Ela percorre a lista encadeada desse balde. Se a palavra já existe, um novo significado é adicionado usando as listas.
+// Caso contrário, a palavra é criada, o significado inserido, e ela é adicionada à lista do balde, com a memória sendo gerenciada.
 
 palavra *buscar(dicionario *dicionario_n, const char *palavra_str);
 
