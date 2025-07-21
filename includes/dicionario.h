@@ -51,15 +51,39 @@ void inserir_palavra(dicionario *dicionario_n, const char *palavra_str, const ch
 // Caso contrário, a palavra é criada, o significado inserido, e ela é adicionada à lista do balde, com a memória sendo gerenciada.
 
 palavra *buscar(dicionario *dicionario_n, const char *palavra_str);
+//A função buscar utiliza o índice calculado em calcular_hash para iniciar
+// um ponteiro para a primeira posição na lista correspondente,
+// inicia um loop para percorrer a lista até o fim, fazendo comparações para saber se a palavra buscada está ali.
 
 void exibir_dic(dicionario *dic);
+//Aqui primeiro verificamos se o dicionário é nulo ou se está vazio,
+// após isso a função utiliza dois loops para percorrer o dicionário,
+// um para as palavras e outro aninhado para os significados de cada palavra,
+// para printar todos já que cada palavra pode ter mais de 1 significado. 
 
 void remover_palavra(dicionario *dic, const char *palavra_str);
+//A função remover_palavra valida a entrada e usa o hash para achar o balde correto.
+// Ela percorre a lista de palavras nesse balde com ponteiros "atual" e "anterior".
+// Ao encontrar a palavra, ajusta as ligações da lista para remover o nó.
+// Em seguida, libera toda a memória da palavra e seus significados, um por um, e diminui a contagem.
+// Se a palavra não é encontrada, uma mensagem avisa.
 
 void liberar_dicionario(dicionario *dic);
+//A função liberar_dicionario garante que toda a memória usada pelo dicionário seja liberada.
+// Ela verifica se o dicionário é válido e, então, percorre cada balde.
+// Em cada balde, ela itera por todas as palavras e, para cada uma, libera todos os seus significados.
+// Por fim, libera o array de baldes e a própria estrutura do dicionário.
 
 void remover_significado(dicionario* dic, const char* palavra_str, const char* significado_str);
+//A função remover_significado valida as entradas e busca a palavra principal no dicionário.
+// Se a palavra for encontrada, ela percorre a lista de significados dessa palavra,
+// mantendo ponteiros para o significado atual e anterior.
+// Ao encontrar o significado específico, ajusta as ligações da lista para removê-lo e libera a memória associada a ele.
+// Caso a palavra ou o significado não sejam encontrados, uma mensagem é exibida.
 
 void aparar_espacos(char *str);
+//A função aparar_espacos remove espaços em branco do início e do fim de uma string.
+//Ela avança um ponteiro pelo começo dos espaços e retrocede outro pelo fim,
+// substituindo os espaços por um terminador nulo.
 
 #endif
