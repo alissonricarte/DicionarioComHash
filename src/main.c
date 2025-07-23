@@ -25,7 +25,7 @@ int main() {
     palavra* palavra_encontrada;
 
     do {
-        printf("\n\n---------DICIONARIO VIRTUAL---------\n\n");
+        printf("\n---------DICIONARIO VIRTUAL---------\n");
         printf("1. Inserir Palavra e Significado(s)\n");
         printf("2. Buscar Palavra\n");
         printf("3. Remover Palavra\n");
